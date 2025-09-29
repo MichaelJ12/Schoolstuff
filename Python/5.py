@@ -79,3 +79,7 @@ print(f"Verrassing!{naam} De {getal}e naam is {gekozen_naam}!!")
 # Dictionary maken en tonen
 resultaat = maak_omgekeerde_dict(getal)
 print("De dictionary is:", resultaat)
+
+
+
+#ff nog een test
