@@ -1,0 +1,95 @@
+:root{
+    --background-color: #4285f4;
+    --background-color-hover: #3367d6;
+    --color: white;
+    --padding-button: 10px 20px;
+
+    --background-color-delete: red;
+    --background-color-hover-delete: rgb(162, 15, 15);
+}
+
+
+/* Moderne geneste CSS syntax */
+
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+
+    /* Geneste selectors binnen form */
+    & label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    & input[type="text"],
+    & input[type="email"],
+    & input[type="password"],
+    & select,
+    & textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+    & button {
+        background-color: var(--background-color);
+        color: var(--color);
+        padding: var(--paddingButton);
+
+    &:hover {
+        background-color: var(--background-color-hover)
+    }
+}
+}
+
+h1 {
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+}
+
+/* Geneste CSS voor tabellen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background-color: #4285f4;
+    color: white;
+    padding: 12px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    
+    & #Delete{
+        background-color: var(--background-color-delete);
+        color: var(--color);
+        padding: var(--paddingButton);
+    &:hover{
+        background-color: var(--background-color-hover-delete)
+        }
+    }
+
+    & button{
+        background-color: var(--background-color);
+        color: var(--color);
+        padding: var(--paddingButton);
+    &:hover{
+        background-color: var(--background-color-hover)
+        }
+    }
+
+  }
+
+  tbody {
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  }
+}
