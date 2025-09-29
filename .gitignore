@@ -1,0 +1,20 @@
+# ---- Python ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.env/
+
+# ---- VS Code ----
+.vscode/
+*.code-workspace
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Node/Front-End (if you ever add JS builds) ----
+node_modules/
+dist/
