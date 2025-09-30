@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Sign In</title>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Explore.html">Explore</a></li>
+                <li><a href="Profile.html">Profile</a></li>
+                <li><a href="Sign_up.html" class="active">Sign in</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sign-in form -->
+    <main class="form-wrapper">
+        <form method="post" action="" class="form-card">
+            <h2 class="form-title">Sign In</h2>
+
+            <div class="form-group">
+                <label for="gebruikersnaam">Gebruikersnaam:</label>
+                <input type="text" id="gebruikersnaam" name="gebruikersnaam" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="wachtwoord">Wachtwoord:</label>
+                <input type="password" id="wachtwoord" name="wachtwoord" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn">Inloggen</button>
+
+            <p class="signup-link">
+                Nog geen account? <a href="Sign_up.html">Maak er één aan</a>
+            </p>
+        </form>
+    </main>
+</body>
+</html>
