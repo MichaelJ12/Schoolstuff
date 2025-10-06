@@ -1,0 +1,8 @@
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,  # INFO shows all important messages
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    filename="file_sorter.log",  # optional: save to a log file
+    filemode="a"  # append to existing log file
+)
