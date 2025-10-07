@@ -1,6 +1,4 @@
-import os, shutil
 import time
-import psutil
 import logging
 from pathlib import Path
 from datetime import datetime
@@ -11,9 +9,9 @@ logging.basicConfig(
     datefmt="%H:%M:%S"
 )
 
+DRY_RUN = True
 
-BASE_DIR: Path  = Path("D:/python art test/2025")    
-
+BASE_DIR: Path  = Path("C:/python art test/2025")    
 
 FOLDERS = [
     "Character-design/jpg",
@@ -34,6 +32,7 @@ def setup_directories(base: Path, folders: list[str]) -> None:
         else:
             logging.debug(f"Directory already exists: {full_path}")
 
+
 def detect_files(folder: Path) -> None: 
     for file in folder.iterdir():
         if file.is_file():
@@ -44,7 +43,6 @@ def detect_files(folder: Path) -> None:
             logging.info(f"Full path: {file}")
             logging.info(f"------------------------------") 
 
-# .jpg rules: if file ext == jpg
 
 def decide_destination(file: Path, base: Path) -> Path:
     """
@@ -56,7 +54,7 @@ def decide_destination(file: Path, base: Path) -> Path:
     # return full destination path
     if file.suffix == ".jpg":
         if "finale" in file.name.lower() or "final" in file.name.lower():
-            return base / "Finished-painting/jpg"
+             return base / "Finished-painting/jpg"
         elif "character" in file.name.lower():
             return base / "Character-design/jpg"
         else:
@@ -79,6 +77,33 @@ def decide_destination(file: Path, base: Path) -> Path:
     return base
 
 
+def move_file_safely(file: Path, base: Path, dry_run: bool = DRY_RUN):
+    if not file.is_file():
+        return
+    
+    destination = decide_destination(file, base)  
+
+    if not destination.exists():
+        if dry_run:
+            logging.info(f"[DRY RUN] Would create directory: {destination}")
+        else:
+            destination.mkdir(parents=True, exist_ok=True)
+            logging.info(f"Created directory: {destination}")
+
+    full_path = destination / file.name
+    counter = 1
+    while full_path.exists():
+        new_name = file.stem + "_" + str(counter) + file.suffix
+        full_path = destination / new_name
+        counter += 1
+        
+    if dry_run:
+        logging.info(f"[DRY RUN] Would move {file} -> {full_path}")
+    else:
+        file.rename(full_path)
+        logging.info(f"file:{file.name} moved as {full_path.name} to {destination}")    
+
+
 if __name__ == "__main__":
     if BASE_DIR.exists():
         logging.info(f"Base directory found: {BASE_DIR}")
@@ -86,10 +111,6 @@ if __name__ == "__main__":
     else:
         logging.error(f"Base directory does not exist: {BASE_DIR}")
 
-    detect_files(BASE_DIR)
-
     for file in BASE_DIR.iterdir():
         if file.is_file():
-            destination = decide_destination(file, BASE_DIR)
-            logging.info(f"{file.name} should go to {destination}")
-
+            move_file_safely(file, BASE_DIR, dry_run=DRY_RUN)
