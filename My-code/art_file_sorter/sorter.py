@@ -9,9 +9,9 @@ logging.basicConfig(
     datefmt="%H:%M:%S"
 )
 
-DRY_RUN = True
+DRY_RUN = False
 
-BASE_DIR: Path  = Path("C:/python art test/2025")    
+BASE_DIR: Path  = Path("D:/Digital Art/2025")    
 
 FOLDERS = [
     "Character-design/jpg",
@@ -55,7 +55,7 @@ def decide_destination(file: Path, base: Path) -> Path:
     if file.suffix == ".jpg":
         if "finale" in file.name.lower() or "final" in file.name.lower():
              return base / "Finished-painting/jpg"
-        elif "character" in file.name.lower():
+        elif "character" in file.name.lower() or "design" in file.name.lower():
             return base / "Character-design/jpg"
         else:
             return base / "Finished-painting/jpg/Progress"
@@ -64,7 +64,7 @@ def decide_destination(file: Path, base: Path) -> Path:
         thresh_time = time.time() - 7*86400
         if "finale" in file.name.lower() or "final" in file.name.lower():
             return base / "Finished-painting"
-        elif "character" in file.name.lower():
+        elif "character" in file.name.lower() or "design" in file.name.lower():
             return base / "Character-design"
         elif "board" in file.name.lower():
             return base / "Finished-painting/Boards"
