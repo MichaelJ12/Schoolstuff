@@ -20,6 +20,5 @@ def most_frequent_char(word: str) -> tuple[int, str]:
     return highest_count, highest_count_letter   
 
 word: str = "backward"
-
 count, letter = most_frequent_char(word)
 print(f"The most frequent letter is '{letter}' with {count} occurrences")
