@@ -5,40 +5,32 @@ nums: list = [2, 3, 1, 1, 4]
 # The minimum jumps to reach the last index is 2 (0 -> 1 -> 4)
 
 def jump_game(nums) -> int:
-    explore_jump: list = [0]
+    current_end = 0
     jumps: int = 0
 
-    while explore_jump:
-        current = explore_jump.pop()
+    print(f"begin start: {current_end}")
+    print("-" * 40)
+    farthest = current_end
+    
+    for i in range(len(nums) -1):
+        print(f"index: {i} value: {nums[i]}")
+        print(f"current end start: {current_end}")
+        print(f"farhest start: {farthest}")
         
-
-        if current == len(nums) -1:
-            print("we made the end")
+        farthest = max(farthest, i + nums[i])
+        print(f"{farthest} = {farthest}, {i} + {nums[i]}")
+        print("-" * 40)
+        
+        if i == current_end:
+            current_end = farthest
+            jumps += 1
+            print(f"jump = {jumps}")
+            print("-" * 40)
+        if current_end >= len(nums) -1:
+            print("we are done")
             print("=" * 40)
             return jumps
-        else:
-            jump_range = range(1, nums[current] + 1) 
-            for r in jump_range:
-                next_jump = r
-            
-            # next jump needs to be the optimal jump in this case + 1 to go to index 1 not 2 to reach the end in 2 jumps
-            print(f" the range of jumps it can make is: {range(nums[current])}")
-            # next_jump = current + nums[current]
-            if 0 <= current < len(nums):
-                print(f"start: {current}")
-                print("-" * 40)
-
-                explore_jump.append(current)
-                jumps += 1
-                print(f"explore: {explore_jump}")
-                print(f"next: {current}")
-                print(f"jumps made: {jumps}")
-                print("=" * 40)
-
-    print("you cant make the end")
-    print("=" * 40)
-
-    return jumps 
+    return jumps
 
 jumps = jump_game(nums)
 
