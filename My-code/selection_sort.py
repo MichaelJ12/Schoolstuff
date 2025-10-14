@@ -6,12 +6,12 @@ def selection_sort(nums) -> None:
 
     for i in range(len(nums) - 1):
         print(i)
-        current_min = min(nums)
-        current_index = nums.index(current_min)
+        value_min = min(nums)
+        value_index = nums.index(value_min)
         
-        nums.pop(current_index)
-        sorted.append(current_min)
-        print(current_min)
+        nums.pop(value_index)
+        sorted.append(value_min)
+        print(value_min)
         print(nums)
         print(sorted)
         print("_" * 40)
@@ -34,13 +34,14 @@ def selection_sort_classic(nums) -> None:
     for i in range(len(nums) - 1):
         print(nums) 
         print("index:", nums[i])
-        current_min = min(nums[i:len(nums)])
-        current_index = nums.index(current_min)
-        j = nums[i:].index(min(nums))
-        print(f"min: {current_min} index: {current_index}")
-        j, current_index = current_index, j
-        print(f"{j, current_index} = {current_index, j}")
-        print(nums)
+        value_min = min(nums[i:])
+        index_min = i + nums[i:].index(value_min)
+
+      
+        print(f"value: {value_min} index: {index_min}")
+        nums[i], nums[index_min] = nums[index_min], nums[i]
+        print(f"{nums[index_min], nums[i]} = {nums[i], nums[index_min]}")
+        print(nums) 
         print("-" * 40)
     
 
