@@ -37,24 +37,37 @@ nums: list = [7, 2, 5, 3, 9]
 #         print("-" * 40)
         
 
-sorted = []
-
 for i in range(len(nums)):
     
     print("list", nums)
+    
     value = nums[i]
     index_value = i
+    
     print("index",index_value)
     print("value",value)
     print("sorted", nums[:i])
     print("unsorted", nums[i:])
+    
     print("=" * 40)
-
-    for j in range(len(nums[:i])):
+    for j in range(i-1, -1, - 1):  
         
-        
-        print("-" * 40)
-        
+        if nums[j]:
+            if  nums[j] > value:
+                print(f"{nums[j]} > {value}")
+                nums[j + 1] = nums[j]
+                print(nums)
+                print("-" * 40)
+            
+            if nums[j] <= value:
+                print(nums)
+                print(f"{nums[j]} <= {value}")
+                nums[j+1] = value
+                print(nums)
+                print("-" * 40)
+                break
+    else:
+        nums[0] = value
 
    
 

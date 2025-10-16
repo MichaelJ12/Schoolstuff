@@ -43,14 +43,6 @@ def selection_sort_classic(nums) -> None:
         print(f"{nums[index_min], nums[i]} = {nums[i], nums[index_min]}")
         print(nums) 
         print("-" * 40)
-    
-
-
-
-
-
-
-
 
 if __name__ ==  "__main__":
     # print(selection_sort(nums))
