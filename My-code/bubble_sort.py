@@ -4,6 +4,9 @@ for i in range(len(numbers) - 1):
     print(f"\nPass {i + 1}:")
     already_sorted = True
     for j in range(len(numbers) - i -1):
+        ranges = range(len(numbers) - i -1)
+        print(f"{j} in {ranges} = {range(len(numbers))} - {i} - {1}")
+        print("=" * 50)
         
         print(f"{numbers[j]} > {numbers[j+1]}")
         if numbers[j] > numbers[j+1]:
