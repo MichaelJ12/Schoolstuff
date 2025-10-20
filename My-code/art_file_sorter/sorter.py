@@ -9,6 +9,7 @@ logging.basicConfig(
     datefmt="%H:%M:%S"
 )
 
+# False its REAL True its a dry run!
 DRY_RUN = False
 
 BASE_DIR: Path  = Path("D:/Digital Art/2025")    
@@ -52,7 +53,7 @@ def decide_destination(file: Path, base: Path) -> Path:
     # check file type
     # check name rules
     # return full destination path
-    if file.suffix == ".jpg":
+    if file.suffix == ".jpg" or file.suffix == ".png":
         if "finale" in file.name.lower() or "final" in file.name.lower():
              return base / "Finished-painting/jpg"
         elif "character" in file.name.lower() or "design" in file.name.lower():
