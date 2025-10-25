@@ -21,6 +21,7 @@ header {
 }
 
 header nav {
+    position: relative;
     ul {
         display: flex;
         justify-content: flex-start;
@@ -33,6 +34,7 @@ header nav {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* subtiele schaduw */
 
         li {
+            position: relative;
             margin: 0 1.2rem;
             
             a {
@@ -61,6 +63,42 @@ header nav {
     }
 }
 
+/* dropdown */
+.dropdown,
+.drop-dropdown{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--background-color-section);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 15vh;
+    margin-top: 0; /* remove gap */
+
+   
+}
+
+.drop-dropdown {
+    top: 0;            /* relative to parent li */
+    left: 100%;        /* appear to the right of parent */
+    margin: 0;         /* no gap */
+    position: absolute;
+}
+
+.dropdown li {
+    position: relative; /* parent for nested dropdown */
+}
+ li:hover > .dropdown{
+        display: block;
+        height: unset;
+    }
+
+.dropdown li:hover > .drop-dropdown {
+    display: block;
+    height: unset;
+}
 /* from signin */
 /* Center wrapper */
 .form-wrapper {
@@ -234,7 +272,6 @@ header nav {
 
     .gallery-page-info {
         font-size: 1rem;
-        opacity: 0.8;
     }
 
 /* LIGHTBOX */
@@ -577,6 +614,9 @@ footer {
     transition: transform 0.3s;
 }
 
+.table-container {
+    overflow-x: auto; /* horizontal scroll on small screens */
+}
 /* Geneste CSS voor tabellen */
 table {
   width: 100%;
@@ -624,8 +664,118 @@ table {
     transform: scale(1.05);
 }
 
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+ 
+}
+#menu-toggle{
+    display: none;
+}
+
+.dropdown-toggle {
+    display: none;
+    flex-direction: column;
+    padding-left: 1rem;
+ 
+}
+#dropdown-toggle{
+    display: none;
+}
+
+.drop-dropdown-toggle {
+    display: none;
+    flex-direction: column;
+    padding-left: 1rem;
+ 
+}
+/* Hide the nested checkbox */
+#drop-dropdown-toggle {
+    display: none;
+}
+
 @media all and (max-width: 600px) {
-    body{
-    background-color: var(--background-color);
+
+    .main-content {
+        display: unset;
+        flex-direction: column;
     }
+
+    aside.sidebar{
+        margin-top: 1rem;
+    }
+    header nav {
+        
+        ul {
+            display: none;
+            flex-direction: column;
+            background-color: var(--background-color-section);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 90%;
+            height: unset;
+            margin: 0
+
+            
+        }
+    }
+
+
+    .menu-toggle {
+        display: block;
+        background-color: var(--background-color-section);
+        color:#ccc;
+        
+ 
+    }
+
+    #menu-toggle:checked + .menu-toggle +  ul {
+        display: flex;
+        
+    }
+    
+    .dropdown-toggle {
+        display: block;
+        background-color: var(--background-color-section);
+        color:#ccc;
+         cursor: pointer;
+        padding: 0.5rem 1rem; /* bigger click area */
+ 
+    }
+
+       /* Dropdown toggle labels visible on mobile */
+    .dropdown-toggle,
+    .drop-dropdown-toggle {
+        display: inline-block;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        color: #ccc;
+    }
+
+    #dropdown-toggle:checked + .dropdown-toggle + .dropdown {
+        display: flex; 
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* Nested dropdown */
+    #drop-dropdown-toggle:checked + .drop-dropdown-toggle + .drop-dropdown {
+        display: flex; 
+        flex-direction: column;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-left: 1rem; /* optional indent */
+        width: 95%;
+    }
+
+     /* Remove hover effects on mobile */
+    li:hover > .dropdown,
+    li:hover > .drop-dropdown {
+        display: none;
+    }
+
+
 }
