@@ -1,7 +1,27 @@
 import random
 
-name: str = str(input("hallo, wat is jouw naam? "))
-age: int = int(input(f"Oke {name} hoe oud ben jij? "))
+def check_int(user_input) -> bool:
+    try:
+        user_input = int(user_input)
+        return True
+    except ValueError:
+        return False
+  
+while True:
+    name: str = input("hallo, wat is jouw naam? ")
+    if name.isalpha():
+        break
+    else:
+        print("voer letters in!")
+
+while True:
+    try: 
+        user_input = input(f"Oke {name} hoe oud ben jij? ")
+        age: int = int(user_input)
+        if check_int(user_input):
+            break
+    except ValueError:
+        print("voer een nummer in!")
 
 birth_date: int = 2025 - age 
 changed_birth_date: int = birth_date - 1
@@ -9,45 +29,37 @@ changed_birth_date: int = birth_date - 1
 
 print(f"Welkom {name}, jij bent waarschijnlijk in {birth_date} geboren.")
 
-answer_options: tuple = ("j", "n")
 
-dot: str = '.' 
 
-guess: int = 1
+
+# funcion to make sure the input is always j/n
+dot = "."
+guess = 1
 
 def ask():
-    return input("is dit juist (j/n): ")
+    while True:
+        answer = input("is dit juist (j/n): ").lower()
+        if answer in ("j", "n"):
+            return answer
+        print("vul (j/n) in")
 
-while True:
-    answer = ask()
+answer = ask()
+if answer == "j":
+    print("Goed van mij he?!")
+else:
+    guess += 1
+    print(f"Ah, sorry {name}, dat moet natuurlijk dan {changed_birth_date} zijn.")
 
-    if answer == "j":  
-        print("Goed van mij he?!")
-        break 
-    else:
-        guess += 1 
-        print(f"Ah, sorry {name}, dat moet natuurlijk dan {changed_birth_date} zijn.")
+    while True:
         answer = ask()
-
-        if answer == "j":
-                print(f"Niet slecht, in {guess} keer geraden!")
-                break
-
-        while answer == "n":
-            # update guess count
-            guess += 1  
-
-            # change your birth date guess
-            new_birth_date = changed_birth_date - (guess - 1)  
-
-            print(f"Oh ehhh{dot} is het dan {new_birth_date}?")
-            dot += "."
-
-            answer = ask()
-        
         if answer == "j":
             print(f"Niet slecht, in {guess} keer geraden!")
             break
+
+        guess += 1
+        new_birth_date = changed_birth_date - (guess - 1)
+        print(f"Oh ehhh{dot} is het dan {new_birth_date}?")
+        dot += "."
 
 print("_" * 40)
 
