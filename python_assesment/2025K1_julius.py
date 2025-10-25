@@ -1,11 +1,4 @@
 import random
-
-def check_int(user_input) -> bool:
-    try:
-        user_input = int(user_input)
-        return True
-    except ValueError:
-        return False
   
 while True:
     name: str = input("hallo, wat is jouw naam? ")
@@ -16,9 +9,8 @@ while True:
 
 while True:
     try: 
-        user_input = input(f"Oke {name} hoe oud ben jij? ")
-        age: int = int(user_input)
-        if check_int(user_input):
+        age: int = int(input(f"Oke {name} hoe oud ben jij? "))
+        if type(age) == int:
             break
     except ValueError:
         print("voer een nummer in!")
@@ -26,15 +18,11 @@ while True:
 birth_date: int = 2025 - age 
 changed_birth_date: int = birth_date - 1
 
-
 print(f"Welkom {name}, jij bent waarschijnlijk in {birth_date} geboren.")
-
-
-
 
 # funcion to make sure the input is always j/n
 dot = "."
-guess = 1
+guess = 0
 
 def ask():
     while True:
@@ -62,12 +50,25 @@ else:
         dot += "."
 
 print("_" * 40)
+ 
+while True:
+    try:
+        full_name: str = input("wat is jouw volledige naam?: ")
+        while True:
+            if type(full_name) == str:
+                break
+            else:
+                print("voer letters in!")
 
-full_name: str = input("wat is jouw volledige naam?: ")
-
-split_full_name = full_name.split()
-first_name = split_full_name[0]
-last_name = split_full_name[-1]
+        split_full_name = full_name.split()
+        first_name = split_full_name[0]
+        last_name = split_full_name[-1]
+        if len(split_full_name) <= 1:
+            print("vul jouw volledige naam in!")
+        else:
+            break
+    except IndexError:
+        print("vul jouw volledige naam in!")
 
 print(f"Hoi {first_name}, een leuke fantasienaam voor jou is {last_name[::-1]}.")
 
@@ -90,10 +91,10 @@ print("_" * 40)
 while True:
     try:
         num = int(input("Voer een getal in tussen 1-10: "))
-        if 0 <= num < 11:
+        if 1 <= num < 11:
             break
         else:
-            print("Het getal moet tussen 0 en 10 liggen.")
+            print("Het getal moet tussen 1 en 10 liggen.")
     except ValueError:
         print("Voer een geldig getal in.")
 

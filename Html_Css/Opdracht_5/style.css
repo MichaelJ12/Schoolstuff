@@ -5,7 +5,11 @@
     --color: rgb(160, 160, 160);
     --font-family: 'Roboto', sans-serif;
     --padding: 10px 20px;
+    --background-color-delete: red;
+    --background-color-hover-delete: rgb(162, 15, 15);
 }
+
+
 body {
     font-family: var(--font-family);
     background-color: rgb(17, 17, 26);
@@ -573,6 +577,55 @@ footer {
     transition: transform 0.3s;
 }
 
+/* Geneste CSS voor tabellen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background-color: #4285f4;
+    color: white;
+    padding: 12px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    
+    & #Delete{
+        background-color: var(--background-color-delete);
+        color: var(--color);
+        padding: var(--paddingButton);
+    &:hover{
+        background-color: var(--background-color-hover-delete)
+        }
+    }
+
+    & button{
+        background-color: var(--background-color);
+        color: var(--color);
+        padding: var(--paddingButton);
+    &:hover{
+        background-color: var(--background-color-hover)
+        }
+    }
+
+  }
+
+  tbody {
+    tr {
+      background-color: #f2f2f2;
+    }
+  }
+}
+
 .gallery-grid img:hover {
     transform: scale(1.05);
+}
+
+@media all and (max-width: 600px) {
+    body{
+    background-color: var(--background-color);
+    }
 }
